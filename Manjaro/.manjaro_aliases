@@ -1,0 +1,4 @@
+#!/bin/bash
+
+alias compoff='xfconf-query -c xfwm4 -p /general/use_compositing -s false'
+alias compon='xfconf-query -c xfwm4 -p /general/use_compositing -s true'

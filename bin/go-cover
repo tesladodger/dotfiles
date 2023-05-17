@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# Runs go tests with coverage, and opens the results in the browser.
+
+t="/tmp/go-cover.$$.tmp"
+go test -coverprofile=$t $@ && go tool cover -html=$t && unlink $t

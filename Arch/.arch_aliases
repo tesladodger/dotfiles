@@ -1,0 +1,4 @@
+#!/bin/bash
+
+alias xmm='xmodmap .Xmodmap'
+alias reboot='shutdown -r now'
