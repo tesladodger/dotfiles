@@ -1,0 +1,11 @@
+:imap jj <Esc>o
+:imap jk <Esc>O
+:imap jl <Esc>
+
+:nnoremap <C-J> <C-W><C-J>
+:nnoremap <C-K> <C-W><C-K>
+:nnoremap <C-L> <C-W><C-L>
+:nnoremap <C-H> <C-W><C-H>
+
+:xnoremap gs y:%s/<C-r>"//g<Left><Left>
+set relativenumber

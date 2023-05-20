@@ -1,0 +1,9 @@
+! Assign right Alt to `Mode_switch`
+keycode 108 = Mode_switch NoSymbol Mode_switch NoSymbol Mode_switch Mode_switch
+
+! Diacritics
+keycode 38 = a A dead_acute      dead_acute      a A a A
+keycode 32 = o O dead_grave      dead_grave      o O o O
+keycode 26 = e E dead_tilde      dead_tilde      e E e E
+keycode 24 = q Q dead_circumflex dead_circumflex q Q q Q
+keycode 44 = j J ccedilla        Ccedilla        j J j J
