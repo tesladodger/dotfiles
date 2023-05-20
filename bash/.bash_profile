@@ -3,4 +3,4 @@
 #
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-[[ -f ~/.Xmodmap ]] && xmodmap .Xmodmap
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
