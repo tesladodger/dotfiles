@@ -2,8 +2,7 @@
 
 # Install all packages using stow.
 
-### declare an array variable
-declare -a packages=(\
+declare -a packages=( \
     "alacritty" \
     "bash" \
     "conky" \
