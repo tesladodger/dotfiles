@@ -8,9 +8,9 @@ general {
 }
 
 order += "disk /"
-order += "ipv6"
 order += "wireless wlp3s0"
 order += "ethernet enp2s0f2"
+order += "ipv6"
 order += "battery 0"
 order += "cpu_temperature 0"
 order += "memory"
@@ -18,16 +18,21 @@ order += "load"
 order += "tztime local"
 order += "volume master"
 
-volume master {
-        format = " ♪: %volume   "
-        format_muted = " ♪: muted (%volume) "
-        device = "sysdefault"
-        mixer = "Master"
+disk "/" {
+    format = " / %free "
 }
 
 wireless wlp3s0 {
-    format_up = " %quality at %essid "
+    # format_up = " %quality at %essid "
+    # format_down = " W: down "
+
+    format_up = " (%quality at %essid, %bitrate) %ip "
     format_down = " W: down "
+}
+
+ethernet enp2s0f2 {
+    format_up = " E: %ip (%speed) "
+    format_down = " E: down "
 }
 
 ipv6 {
@@ -35,28 +40,15 @@ ipv6 {
     format_down = " no IPv6 "
 }
 
-ethernet enp2s0f2 {
-    format_up = " <span size='large'></span> (%speed) %ip "
-    format_down = " <span size='large'></span> down "
-}
-
 battery 0 {
     format = " %status %percentage %remaining "
-    format_down = "No battery"
-    status_chr = "<span size='large'></span>"
-    status_bat = "<span size='large'></span>"
-    status_unk = "UNK"
-    status_full = "FULL"
-    path = "/sys/class/power_supply/BAT0/uevent"
+    format_down = " No battery "
+    status_chr = "    "
+    status_bat = "    "
+    status_unk = " ? "
+    status_full = " ☻ "
+    path = "/sys/class/power_supply/BAT%d/uevent"
     low_threshold = 20
-}
-
-tztime local {
-    format = " %Y-%m-%d %H:%M:%S "
-}
-
-load {
-    format = " L: %5min "
 }
 
 cpu_temperature 0 {
@@ -68,6 +60,17 @@ memory {
     format = " M: %used %free "
 }
 
-disk "/" {
-    format = " / %free "
+load {
+    format = " L: %5min "
+}
+
+tztime local {
+    format = " %Y-%m-%d %H:%M:%S "
+}
+
+volume master {
+        format = " ♪: %volume   "
+        format_muted = " ♪: muted (%volume) "
+        device = "sysdefault"
+        mixer = "Master"
 }
