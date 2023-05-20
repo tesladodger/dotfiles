@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Install all packages using stow.
+
+### declare an array variable
+declare -a packages=(\
+    "alacritty" \
+    "bash" \
+    "conky" \
+    "git" \
+    "i3" \
+    "nvim" \
+    "qpdfview" \
+    "tmux" \
+    "vim" \
+)
+
+for package in "${packages[@]}"
+do
+    echo "$package"
+    stow -D $package
+    stow $package
+done
