@@ -12,7 +12,7 @@ declare -a packages=(\
     "nvim" \
     "qpdfview" \
     "tmux" \
-    "vim" \
+    # "vim" \
 )
 
 for package in "${packages[@]}"

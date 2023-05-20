@@ -18,6 +18,7 @@
     - tmux
         - [tmux resurect](https://github.com/tmux-plugins/tmux-resurrect)
         should be cloned in the home directory.
+    - [delta](https://github.com/dandavison/delta) 
 
 ## Installation
 
