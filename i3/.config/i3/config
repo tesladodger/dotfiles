@@ -166,7 +166,7 @@ smart_gaps on
 smart_borders on
 
 set $bg       #232323
-set $bg_high  #003300
+set $bg_high  #006600
 set $fg       #abb2bf
 set $fg_high  #d0d0d0
 set $fg_urg   #e06c75
@@ -175,4 +175,3 @@ client.focused           $bg_high $bg_high $fg_high $bg_high $bg_high
 client.focused_inactive  $bg      $bg      $fg      $bg      $bg
 client.unfocused         $bg      $bg      $fg      $bg      $bg
 client.urgent            $bg      $bg      $fg_urg  $bg      $bg
-
