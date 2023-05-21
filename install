@@ -12,11 +12,13 @@ declare -a packages=( \
     "qpdfview" \
     "tmux" \
     # "vim" \
+    # "private" \
 )
 
 for package in "${packages[@]}"
 do
     echo "$package"
-    stow -D $package
-    stow $package
+    # -v verbose
+    # -R restow (first unstow, then stow again)
+    stow -v -R $package
 done
