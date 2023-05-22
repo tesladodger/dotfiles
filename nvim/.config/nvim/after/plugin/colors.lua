@@ -14,4 +14,20 @@ require('tokyonight').setup({
     end,
 })
 
-vim.cmd [[colorscheme tokyonight-night]]
+require('onedark').setup({
+    style = 'warmer',
+    code_style = {
+        comments = 'none',
+        keywords = 'none',
+        functions = 'italic',
+        strings = 'none',
+        variables = 'none',
+    }
+})
+
+function SetColorscheme(color)
+    color = color or 'tokyonight-night'
+    vim.cmd.colorscheme(color)
+end
+
+SetColorscheme()

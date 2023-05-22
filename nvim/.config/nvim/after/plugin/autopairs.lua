@@ -1,5 +1,1 @@
-local npairs = require('nvim-autopairs')
-
-npairs.setup({
-    check_ts = true,
-})
+require('nvim-autopairs').setup({ check_ts = true })

@@ -4,21 +4,19 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use 'folke/tokyonight.nvim'
+    use 'navarasu/onedark.nvim'
 
-    use 'nvim-tree/nvim-web-devicons'
     use 'jose-elias-alvarez/null-ls.nvim'
-    use 'lewis6991/gitsigns.nvim'
+    use 'nvim-tree/nvim-tree.lua'
+    use 'nvim-tree/nvim-web-devicons'
     use 'nvim-lualine/lualine.nvim'
     use 'windwp/nvim-ts-autotag'
+    use 'windwp/nvim-autopairs'
+    use 'mbbill/undotree'
+    use 'tpope/vim-fugitive'
+    use 'lewis6991/gitsigns.nvim'
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
-    use {
-        'windwp/nvim-autopairs',
-        config = function()
-            require('nvim-autopairs').setup {}
-        end
-    }
 
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -46,12 +44,5 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
         requires = { { 'nvim-lua/plenary.nvim' } }
-    }
-
-    use {
-        'nvim-tree/nvim-tree.lua',
-        config = function()
-            require('nvim-tree').setup {}
-        end
     }
 end)

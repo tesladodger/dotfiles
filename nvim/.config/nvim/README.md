@@ -5,10 +5,11 @@
 - neovim
 - fzf
 - ripgrep
+- xsel or xclip
 
 ## Installation 
 
-Run `install.sh` to create a symbolic link to this repo.
+Run `install` to create a symbolic link to this repo.
 
 To install the plugins, open `lua/tesla/packer.lua`, `:source` it and
 `:PackerSync`. 

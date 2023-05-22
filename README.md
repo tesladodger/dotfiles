@@ -10,6 +10,7 @@
 - nvim
     - [packer.nvim](https://github.com/wbthomason/packer.nvim)
     - ripgrep
+    - xsel or xclip
 - fzf
 - qpdfview
 - tmux
