@@ -2,6 +2,9 @@
     email = andrerfmartins@protonmail.com
     name = tesladodger
 
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
+
 [core]
     pager = delta
 
