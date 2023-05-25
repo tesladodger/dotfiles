@@ -32,10 +32,13 @@ vim.keymap.set('n', '<leader>ps', function()
     })
 end)
 
-vim.keymap.set('n', '<leader>ls', builtin.buffers, {})
-vim.keymap.set('n', '<leader>pd', builtin.diagnostics, {})
+vim.keymap.set('n', '<leader>ls', builtin.buffers)
+vim.keymap.set('n', '<leader>pd', builtin.diagnostics)
+
 vim.keymap.set('n', '<leader>/', function()
-    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        previewer = false,
-    })
-end, { desc = '[/] Fuzzily search in current buffer' })
+    require('telescope.builtin').current_buffer_fuzzy_find(
+        require('telescope.themes').get_dropdown({
+            previewer = false,
+        })
+    )
+end)
