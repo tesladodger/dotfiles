@@ -120,11 +120,13 @@ fi
 unset rc
 
 # Path
-export PATH=$(go env GOPATH)/bin:$PATH
+PATH=$(go env GOPATH)/bin:$PATH
+PATH=~/.cargo/bin:$PATH
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
+
 export PATH
