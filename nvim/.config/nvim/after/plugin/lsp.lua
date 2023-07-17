@@ -8,11 +8,12 @@ lsp.preset('recommended')
 
 lsp.ensure_installed({
     'lua_ls',
-    -- 'tsserver',
-    -- 'eslint',
+    'tsserver',
+    'eslint',
     'gopls',
     'rust_analyzer',
-    -- 'html',
+    'html',
+    'jsonls',
 })
 
 lsp.on_attach(function(_, bufnr)
@@ -43,12 +44,14 @@ lsp.format_on_save({
             'javascriptreact',
             'typescript',
             'typescriptreact',
+            'svelte',
         },
     }
 })
 
--- (Optional) Configure lua language server for neovim
+-- Configure language servers for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+require('lspconfig').svelte.setup {}
 
 lsp.setup()
 
@@ -137,6 +140,7 @@ null_ls.setup({
         -- null_ls.builtins.diagnostics.revive,
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.eslint,
+        --[[
         null_ls.builtins.diagnostics.eslint.with({
             diagnostic_config = {
                 underline = true,
@@ -146,5 +150,6 @@ null_ls.setup({
                 severity_sort = true,
             },
         }),
+        ]]
     },
 })
