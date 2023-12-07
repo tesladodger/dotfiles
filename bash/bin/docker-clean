@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "stopping containers"
+docker stop $(docker ps -a -q)
+echo "deleting containers"
+docker rm $(docker ps -a -q)
+echo "deleting images"
+docker rmi $(docker images -a -q)
+echo "prunning"
+docker system prune -af
