@@ -14,6 +14,11 @@ lsp.ensure_installed({
     'rust_analyzer',
     'html',
     'jsonls',
+    'yamlls',
+    'bashls',
+    'cmake',
+    'dockerls',
+    'docker_compose_language_service',
 })
 
 lsp.on_attach(function(_, bufnr)
