@@ -1,5 +1,8 @@
 require('nvim-tree').setup({
-    view = { relativenumber = true },
+    view = {
+        relativenumber = true,
+        width = 40
+    },
     git = { ignore = false }, -- show gitignored files
 })
 
