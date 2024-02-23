@@ -36,3 +36,8 @@ vim.keymap.set('n', '<leader>gs', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 vim.keymap.set('n', '<leader>z', function()
     vim.opt.spell = not (vim.opt.spell:get())
 end)
+
+-- open a terminal
+vim.keymap.set('n', '<leader>t', '<cmd>term<CR>i')
+-- in a terminal, go back to normal mode by pressing <Esc>
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
