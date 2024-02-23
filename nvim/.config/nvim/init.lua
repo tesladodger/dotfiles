@@ -1,2 +1,1 @@
--- require('tesla')
-require('dev')
+require('tesla')
