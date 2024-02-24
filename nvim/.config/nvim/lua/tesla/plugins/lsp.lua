@@ -70,22 +70,34 @@ return {
             servers = {
                 ['lua_ls'] = { 'lua' },
                 ['gopls'] = { 'go' },
+                ['eslint'] = {
+                    'javascript',
+                    'javascriptreact',
+                    'typescript',
+                    'typescriptreact',
+                },
                 ['null-ls'] = {
                     'javascript',
                     'javascriptreact',
                     'typescript',
                     'typescriptreact',
-                    'svelte',
                 },
             }
         })
 
-        require('lspconfig').gopls.setup({})
-        require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-        require('lspconfig').svelte.setup({})
-        require('lspconfig').tsserver.setup({})
-        require('lspconfig').eslint.setup({})
-        require('lspconfig').docker_compose_language_service.setup({})
+        local lspconf = require('lspconfig');
+        lspconf.lua_ls.setup(lsp.nvim_lua_ls())
+        lspconf.tsserver.setup({
+            format = { enable = false },
+        })
+        lspconf.eslint.setup({
+            on_attach = function(_, bufnr)
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    buffer = bufnr,
+                    command = "EslintFixAll",
+                })
+            end,
+        })
 
         ---------
         -- cmp --
@@ -168,7 +180,7 @@ return {
         null_ls.setup({
             sources = {
                 null_ls.builtins.formatting.prettier,
-                null_ls.builtins.formatting.eslint,
+                -- null_ls.builtins.formatting.eslint,
             },
         })
     end
