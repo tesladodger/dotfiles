@@ -1,6 +1,9 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    dependencies = {
+        'windwp/nvim-ts-autotag',
+    },
     config = function()
         require('nvim-treesitter.configs').setup({
             ensure_installed = {
@@ -12,7 +15,6 @@ return {
                 'c',
                 'lua',
                 'vim',
-                'vimdoc',
                 'query',
                 'comment',
             },
