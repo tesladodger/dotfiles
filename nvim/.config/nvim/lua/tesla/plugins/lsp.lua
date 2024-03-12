@@ -48,6 +48,7 @@ return {
                 'lua_ls',
                 'tsserver',
                 'eslint',
+                'tailwindcss',
                 'gopls',
                 'rust_analyzer',
                 'html',
@@ -98,6 +99,7 @@ return {
                 })
             end,
         })
+        lspconf.tailwindcss.setup({})
 
         ---------
         -- cmp --
