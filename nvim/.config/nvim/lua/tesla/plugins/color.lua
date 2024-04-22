@@ -10,7 +10,7 @@ return {
     config = function()
         require('tokyonight').setup({
             styles = {
-                functions = { italic = true },
+                functions = { italic = false },
                 comments = { italic = false },
                 keywords = { italic = false },
                 sidebars = 'dark',
