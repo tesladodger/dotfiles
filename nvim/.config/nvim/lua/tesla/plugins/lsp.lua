@@ -31,6 +31,7 @@ return {
             local opts = { buffer = bufnr, remap = false }
 
             vim.keymap.set('n', '<leader>gd', function() vim.lsp.buf.definition() end, opts)
+            vim.keymap.set('n', '<leader>gi', function() vim.lsp.buf.implementation() end, opts)
             vim.keymap.set('n', '<leader>h', function() vim.lsp.buf.hover() end, opts)
 
             vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
