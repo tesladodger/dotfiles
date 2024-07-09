@@ -59,6 +59,7 @@ return {
                 'cmake',
                 'dockerls',
                 'docker_compose_language_service',
+                'pylsp',
             },
             handlers = {
                 lsp.default_setup,
@@ -101,6 +102,7 @@ return {
             end,
         })
         lspconf.tailwindcss.setup({})
+        lspconf.pylsp.setup({})
 
         ---------
         -- cmp --
