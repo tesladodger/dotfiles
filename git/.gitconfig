@@ -17,3 +17,6 @@
 
 [diff]
     colorMoved = default
+
+[merge]
+    tool = meld
