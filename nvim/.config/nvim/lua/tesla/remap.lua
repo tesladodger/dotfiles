@@ -37,7 +37,10 @@ vim.keymap.set('n', '<leader>z', function()
     vim.opt.spell = not (vim.opt.spell:get())
 end)
 
--- open a terminal
+-- open a terminal buffer
 vim.keymap.set('n', '<leader>t', '<cmd>term<CR>i')
--- in a terminal, go back to normal mode by pressing <Esc>
+-- in a terminal buffer, go back to normal mode by pressing <Esc>
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+
+-- run the sessionizer directly from nvim (only works when already in tmux).
+vim.keymap.set('n', '<C-t>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')

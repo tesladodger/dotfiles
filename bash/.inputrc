@@ -6,14 +6,14 @@
 "\e[C": forward-char
 "\e[D": backward-char
 
-# [Tab] and [Shift]+[Tab] to auto-complete
+# <Tab> and <Shift><Tab> to auto-complete.
 "\t": menu-complete
 "\e[Z": menu-complete-backward
 set show-all-if-ambiguous on
 set menu-complete-display-prefix on
 
-# Run the sessionizer with <C-t>
+# Run the sessionizer with <C-t>.
 Control-t: "tmux-sessionizer \n"
 
-# Run the pushd script with <C-h>
+# Run the pushd script with <C-h>.
 Control-h: "source pushd-fzf \n"
