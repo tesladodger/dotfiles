@@ -103,6 +103,7 @@ return {
         })
         lspconf.tailwindcss.setup({})
         lspconf.pylsp.setup({})
+        lspconf.vuels.setup({})
 
         ---------
         -- cmp --
