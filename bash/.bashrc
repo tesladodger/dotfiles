@@ -90,7 +90,7 @@ export EDITOR=nvim
 
 export GREP_OPTIONS='--color=auto'
 
-export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
 export HISTFILESIZE=100000
 
