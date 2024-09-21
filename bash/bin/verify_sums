@@ -1,22 +1,25 @@
 #!/bin/bash
 #
-# Finds all checksum files in the current directory and validates them.
+# Finds all checksum files recursively in a directory and validates them.
 #
 
 print_usage() {
-    echo "Usage: verify_sums [-e extension] [-a algorithm]"
+    echo "Usage: verify_sums [OPTION...]"
     echo ""
     echo "Options:"
+    echo " -d       Working directory. Default is the current directory."
     echo " -e       File extension of the checksum files. Default is 'sum'."
     echo " -a       Algorithm to use. Default is 'sha256sum'."
     echo " -?       Print this list and exit."
 }
 
+dir='.'
 extension='sum'
 alg='sha256sum'
 
-while getopts 'e:a:?' flag; do
+while getopts 'd:e:a:?' flag; do
     case "${flag}" in
+        d) dir="${OPTARG}" ;;
         e) extension="${OPTARG}" ;;
         a) alg="${OPTARG}" ;;
         ?) print_usage
@@ -34,10 +37,13 @@ function verify_sum() {
     sumfname=$1
     echo "-> Checking $sumfname"
 
+    workdir=`(dirname $sumfname)`
+
     exp_sum=`(cat $sumfname | cut -d ' ' -f 1)`
     fname=`(cat $sumfname | cut -d ' ' -f 3)`
+    path="${workdir}/${fname}"
 
-    cmd="${alg} ${fname}"
+    cmd="${alg} ${path}"
     act_sum=`($cmd | cut -d ' ' -f 1)`
 
     if [ "$exp_sum" = "$act_sum" ]; then
@@ -49,11 +55,12 @@ function verify_sum() {
     fi
 }
 
+export dir
 export extension
 export alg
 export -f verify_sum
 
-find . -name "*.${extension}" -exec bash -c 'verify_sum "$0"' {} \;
+find ${dir} -name "*.${extension}" -exec bash -c 'verify_sum "$0"' {} \;
 
 # Sources:
 # > https://stackoverflow.com/questions/4321456/find-exec-a-shell-function-in-linux
