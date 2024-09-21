@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# Finds all checksum files in the current directory and validates them.
+#
+
+print_usage() {
+    echo "Usage: verify_sums [-e extension] [-a algorithm]"
+    echo ""
+    echo "Options:"
+    echo " -e       File extension of the checksum files. Default is 'sum'."
+    echo " -a       Algorithm to use. Default is 'sha256sum'."
+    echo " -?       Print this list and exit."
+}
+
+extension='sum'
+alg='sha256sum'
+
+while getopts 'e:a:?' flag; do
+    case "${flag}" in
+        e) extension="${OPTARG}" ;;
+        a) alg="${OPTARG}" ;;
+        ?) print_usage
+            exit 0 ;;
+        *) print_usage
+            exit 1 ;;
+    esac
+done
+
+export RED='\033[0;31m'
+export GREEN='\033[0;32m'
+export NC='\033[0m' # No Color
+
+function verify_sum() {
+    sumfname=$1
+    echo "-> Checking $sumfname"
+
+    exp_sum=`(cat $sumfname | cut -d ' ' -f 1)`
+    fname=`(cat $sumfname | cut -d ' ' -f 3)`
+
+    cmd="${alg} ${fname}"
+    act_sum=`($cmd | cut -d ' ' -f 1)`
+
+    if [ "$exp_sum" = "$act_sum" ]; then
+        echo -e "${GREEN}OK${NC}"
+    else
+        echo -e "${RED}'${fname}': checksum doesn't match!${NC}"
+        echo "exp: ${exp_sum}"
+        echo "got: ${act_sum}"
+    fi
+}
+
+export extension
+export alg
+export -f verify_sum
+
+find . -name "*.${extension}" -exec bash -c 'verify_sum "$0"' {} \;
+
+# Sources:
+# > https://stackoverflow.com/questions/4321456/find-exec-a-shell-function-in-linux
+# > https://stackoverflow.com/questions/7069682/how-to-get-arguments-with-flags-in-bash
