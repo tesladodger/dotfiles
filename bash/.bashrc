@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# ~/.bashrc
-# _____ _____ _____ _        _
-#|_   _|  ___|   __| |      / \
-#  | | | \\__ \_\__| |___  / _ \
-#  |_| |_____|_____|_____|/_| |_\
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
@@ -89,6 +83,7 @@ shopt -s histappend
 export EDITOR=nvim
 
 export GREP_OPTIONS='--color=auto'
+export RESTIC_REPO="sftp:amartins@192.168.50.20:/mnt/Skynet/amartins/restic-repo-tesla-manjaro"
 
 export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
