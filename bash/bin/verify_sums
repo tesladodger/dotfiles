@@ -37,14 +37,14 @@ function verify_sum() {
     sumfname=$1
     echo "-> Checking $sumfname"
 
-    workdir=`(dirname $sumfname)`
+    workdir=$(dirname $sumfname)
 
-    exp_sum=`(cat $sumfname | cut -d ' ' -f 1)`
-    fname=`(cat $sumfname | cut -d ' ' -f 3)`
+    exp_sum=$(cat $sumfname | cut -d ' ' -f 1)
+    fname=$(cat $sumfname | cut -d ' ' -f 3)
     path="${workdir}/${fname}"
 
     cmd="${alg} ${path}"
-    act_sum=`($cmd | cut -d ' ' -f 1)`
+    act_sum=$($cmd | cut -d ' ' -f 1)
 
     if [ "$exp_sum" = "$act_sum" ]; then
         echo -e "${GREEN}OK${NC}"
@@ -52,6 +52,7 @@ function verify_sum() {
         echo -e "${RED}'${fname}': checksum doesn't match!${NC}"
         echo "exp: ${exp_sum}"
         echo "got: ${act_sum}"
+        return 2
     fi
 }
 
