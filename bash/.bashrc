@@ -84,6 +84,7 @@ export EDITOR=nvim
 
 export GREP_OPTIONS='--color=auto'
 export RESTIC_REPO="sftp:amartins@192.168.50.20:/mnt/Skynet/amartins/restic-repo-tesla-manjaro"
+export RESTIC_REPO_VMS="sftp:amartins@192.168.50.20:/mnt/Skynet/amartins/restic-repo-vms"
 
 export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
