@@ -47,7 +47,7 @@ return {
         require('mason-lspconfig').setup({
             ensure_installed = {
                 'lua_ls',
-                'tsserver',
+                'ts_ls',
                 'eslint',
                 'tailwindcss',
                 'gopls',
@@ -60,6 +60,7 @@ return {
                 'dockerls',
                 'docker_compose_language_service',
                 'pylsp',
+                'vuels',
             },
             handlers = {
                 lsp.default_setup,
@@ -90,9 +91,7 @@ return {
 
         local lspconf = require('lspconfig');
         lspconf.lua_ls.setup(lsp.nvim_lua_ls())
-        lspconf.tsserver.setup({
-            format = { enable = false },
-        })
+        lspconf.ts_ls.setup({})
         lspconf.eslint.setup({
             on_attach = function(_, bufnr)
                 vim.api.nvim_create_autocmd("BufWritePre", {

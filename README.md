@@ -10,6 +10,7 @@
 - nvim
     - ripgrep
     - xsel or xclip
+    - [fd](https://github.com/sharkdp/fd)
 - fzf
 - qpdfview
 - tmux
