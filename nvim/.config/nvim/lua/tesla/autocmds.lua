@@ -9,11 +9,13 @@ vim.api.nvim_create_autocmd('FileType', {
     command = 'setlocal spell spelllang=en',
 })
 
--- Change indentation style for js family languages to match prettier.
-vim.api.nvim_create_autocmd('FileType', {
-    group = augroup('js_indent'),
-    pattern = 'javascript,javascriptreact,typescript,typescriptreact',
-    command = 'setlocal tabstop=2 shiftwidth=2',
+-- LSP format on save.
+vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = function()
+        if vim.bo.modified == true then
+            vim.cmd('lua vim.lsp.buf.format()')
+        end
+    end
 })
 
 -- Highlight on yank.
