@@ -73,7 +73,15 @@ return {
         })
 
         local lspconf = require('lspconfig');
-        lspconf.lua_ls.setup({})
+        lspconf.lua_ls.setup({
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { 'vim' }
+                    }
+                }
+            }
+        })
         lspconf.gopls.setup({})
         lspconf.ts_ls.setup({})
         lspconf.eslint.setup({
