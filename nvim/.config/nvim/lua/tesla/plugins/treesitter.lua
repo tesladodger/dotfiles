@@ -11,7 +11,6 @@ return {
                 'javascript',
                 'typescript',
                 'go',
-                'latex',
                 'c',
                 'lua',
                 'vim',

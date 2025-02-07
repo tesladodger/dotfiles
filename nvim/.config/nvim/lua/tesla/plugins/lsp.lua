@@ -51,25 +51,30 @@ return {
             end,
         })
 
+        local lsps = {
+            'lua_ls',
+            'gopls',
+            'rust_analyzer',
+            'cmake',
+            'pylsp',
+        }
+
+        if vim.fn.executable('node') == 1 then
+            table.insert(lsps, 'ts_ls')
+            table.insert(lsps, 'eslint')
+            table.insert(lsps, 'tailwindcss')
+            table.insert(lsps, 'html')
+            table.insert(lsps, 'jsonls')
+            table.insert(lsps, 'yamlls')
+            table.insert(lsps, 'bashls')
+            table.insert(lsps, 'dockerls')
+            table.insert(lsps, 'docker_compose_language_service')
+            table.insert(lsps, 'vuels')
+        end
+
         require('mason').setup({})
         require('mason-lspconfig').setup({
-            ensure_installed = {
-                'lua_ls',
-                'ts_ls',
-                'eslint',
-                'tailwindcss',
-                'gopls',
-                'rust_analyzer',
-                'html',
-                'jsonls',
-                'yamlls',
-                'bashls',
-                'cmake',
-                'dockerls',
-                'docker_compose_language_service',
-                'pylsp',
-                'vuels',
-            },
+            ensure_installed = lsps,
         })
 
         local lspconf = require('lspconfig');
@@ -83,6 +88,7 @@ return {
             }
         })
         lspconf.gopls.setup({})
+
         lspconf.ts_ls.setup({})
         lspconf.eslint.setup({
             on_attach = function(_, bufnr)
