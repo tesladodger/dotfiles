@@ -59,7 +59,9 @@ return {
             'pylsp',
         }
 
-        if vim.fn.executable('node') == 1 then
+        local node_available = vim.fn.executable('node') == 1
+
+        if node_available then
             table.insert(lng_servers, 'ts_ls')
             table.insert(lng_servers, 'eslint')
             table.insert(lng_servers, 'tailwindcss')
@@ -90,19 +92,14 @@ return {
         })
         lspconf.gopls.setup({})
 
-        lspconf.ts_ls.setup({})
-        lspconf.eslint.setup({
-            on_attach = function(_, bufnr)
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    buffer = bufnr,
-                    command = "EslintFixAll",
-                })
-            end,
-        })
-        lspconf.tailwindcss.setup({})
-        lspconf.pylsp.setup({})
-        lspconf.vuels.setup({})
-        lspconf.buf_ls.setup({})
+        if node_available then
+            lspconf.ts_ls.setup({})
+            lspconf.eslint.setup({})
+            lspconf.tailwindcss.setup({})
+            lspconf.pylsp.setup({})
+            lspconf.vuels.setup({})
+            lspconf.buf_ls.setup({})
+        end
 
         ---------
         -- cmp --
