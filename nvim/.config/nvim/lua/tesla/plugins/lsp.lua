@@ -51,7 +51,7 @@ return {
             end,
         })
 
-        local lsps = {
+        local lng_servers = {
             'lua_ls',
             'gopls',
             'rust_analyzer',
@@ -60,21 +60,22 @@ return {
         }
 
         if vim.fn.executable('node') == 1 then
-            table.insert(lsps, 'ts_ls')
-            table.insert(lsps, 'eslint')
-            table.insert(lsps, 'tailwindcss')
-            table.insert(lsps, 'html')
-            table.insert(lsps, 'jsonls')
-            table.insert(lsps, 'yamlls')
-            table.insert(lsps, 'bashls')
-            table.insert(lsps, 'dockerls')
-            table.insert(lsps, 'docker_compose_language_service')
-            table.insert(lsps, 'vuels')
+            table.insert(lng_servers, 'ts_ls')
+            table.insert(lng_servers, 'eslint')
+            table.insert(lng_servers, 'tailwindcss')
+            table.insert(lng_servers, 'html')
+            table.insert(lng_servers, 'jsonls')
+            table.insert(lng_servers, 'yamlls')
+            table.insert(lng_servers, 'bashls')
+            table.insert(lng_servers, 'dockerls')
+            table.insert(lng_servers, 'docker_compose_language_service')
+            table.insert(lng_servers, 'vuels')
+            table.insert(lng_servers, 'buf_ls')
         end
 
         require('mason').setup({})
         require('mason-lspconfig').setup({
-            ensure_installed = lsps,
+            ensure_installed = lng_servers,
         })
 
         local lspconf = require('lspconfig');
@@ -101,6 +102,7 @@ return {
         lspconf.tailwindcss.setup({})
         lspconf.pylsp.setup({})
         lspconf.vuels.setup({})
+        lspconf.buf_ls.setup({})
 
         ---------
         -- cmp --
