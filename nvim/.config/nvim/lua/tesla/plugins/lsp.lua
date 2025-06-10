@@ -78,6 +78,7 @@ return {
         require('mason').setup({})
         require('mason-lspconfig').setup({
             ensure_installed = lng_servers,
+            automatic_enable = false,
         })
 
         local lspconf = require('lspconfig');
