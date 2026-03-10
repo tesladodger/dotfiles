@@ -81,8 +81,7 @@ return {
             automatic_enable = false,
         })
 
-        local lspconf = require('lspconfig');
-        lspconf.lua_ls.setup({
+        vim.lsp.config('lua_ls', {
             settings = {
                 Lua = {
                     diagnostics = {
@@ -91,15 +90,28 @@ return {
                 }
             }
         })
-        lspconf.gopls.setup({})
+        vim.lsp.enable('lua_ls')
+        vim.lsp.enable('gopls')
 
         if node_available then
-            lspconf.ts_ls.setup({})
-            lspconf.eslint.setup({})
-            lspconf.tailwindcss.setup({})
-            lspconf.pylsp.setup({})
-            lspconf.vuels.setup({})
-            lspconf.buf_ls.setup({})
+            vim.lsp.enable('ts_ls')
+            vim.lsp.enable('eslint')
+            vim.lsp.enable('tailwindcss')
+            vim.lsp.enable('vuels')
+            vim.lsp.enable('buf_ls')
+            vim.lsp.config('pylsp', {
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pycodestyle = {
+                                ignore = { 'W391', 'E501' },
+                                maxLineLength = 200
+                            }
+                        }
+                    }
+                },
+            })
+            vim.lsp.enable('pylsp')
         end
 
         ---------
