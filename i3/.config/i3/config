@@ -175,3 +175,7 @@ client.focused           $bg_high $bg_high $fg_high $bg_high $bg_high
 client.focused_inactive  $bg      $bg      $fg      $bg      $bg
 client.unfocused         $bg      $bg      $fg      $bg      $bg
 client.urgent            $bg      $bg      $fg_urg  $bg      $bg
+
+exec_always --no-startup-id i3-msg 'workspace 1; exec alacritty'
+exec_always --no-startup-id i3-msg 'workspace 2; exec firefox'
+exec --no-startup-id ~/.config/i3/tmux_startup.sh
