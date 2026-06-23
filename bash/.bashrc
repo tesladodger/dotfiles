@@ -118,6 +118,7 @@ unset rc
 # Path
 PATH=$(go env GOPATH)/bin:$PATH
 PATH=~/.cargo/bin:$PATH
+PATH=~/work/zig-x86_64-linux-0.17.0-dev.864+3deb86baf:$PATH
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
