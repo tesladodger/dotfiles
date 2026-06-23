@@ -60,14 +60,6 @@ set wildchar=<Tab> wildmenu wildmode=full
 au CmdLineEnter * set norelativenumber | redraw
 au CmdLineLeave * set relativenumber   | set number
 
-" -------------- "
-" File templates "
-" -------------- "
-augroup templates
-    au!
-    autocmd BufNewFile *.* silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e")
-augroup END
-
 " -------- "
 " Mappings "
 " -------- "
@@ -103,53 +95,6 @@ onoremap p i(|
 " bring search results to midscreen
 nnoremap n nzz
 nnoremap N Nzz
-
-" automatic brackets
-inoremap {<CR> {<CR>}<ESC>O
-inoremap (<CR> (<CR>)<ESC>O
-inoremap [<CR> [<CR>]<ESC>O
-inoremap { {}<Left>
-inoremap ( ()<Left>
-inoremap [ []<Left>
-inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
-inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
-inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'<Left>"
-inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"<Left>"
-
-function! GetPreCursorChar()
-    if col('.') <= 1
-        return ''
-    endif
-    let before_cursor = getline('.')[:col('.')-2]
-    return strcharpart(before_cursor, strchars(before_cursor)-1)
-endfunction
-
-" ---------------------- "
-" Automatic closing tags "
-" ---------------------- "
-" only enable auto tags for certain regions in a filetype
-function! AssertRegion()
-    if (&filetype == 'typescriptreact')
-        let l:regionStack = synstack(line('.'), col('.'))
-        for id in l:regionStack
-            let l:regionName = synIDattr(id, "name")
-            if regionName == "tsxRegion"
-                return 1
-            endif
-        endfor
-        return 0
-    endif
-    return 1
-endfunction
-function s:CompleteTags()
-    inoremap <buffer> <expr> > AssertRegion()
-                \   ? "></\<C-x>\<C-o>\<Esc>:startinsert!\<CR>\<C-O>?</\<CR>"
-                \   : ">"
-    inoremap <buffer> ><Leader> >
-    inoremap <buffer> ><CR> ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR><CR><Tab><CR><Up><C-O>$
-endfunction
-autocmd BufRead,BufNewFile *.html,*.xml call s:CompleteTags()
 
 " --------------------------------------- "
 " Filetype specific settings and mappings "
@@ -243,7 +188,6 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 " Close vim when NERDTree is the only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" highlight script in ~/.vim/after/syntax/nerdtree.vim
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
