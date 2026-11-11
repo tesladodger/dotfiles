@@ -6,16 +6,16 @@ return {
         { 'williamboman/mason-lspconfig.nvim' },
 
         -- Autocompletion
-        -- { 'hrsh7th/nvim-cmp' },
-        -- { 'hrsh7th/cmp-path' },
-        -- { 'hrsh7th/cmp-buffer' },
-        -- { 'hrsh7th/cmp-nvim-lsp' },
-        -- { 'hrsh7th/cmp-nvim-lua' },
-        -- { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/nvim-cmp' },
+        { 'hrsh7th/cmp-path' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+        { 'saadparwaiz1/cmp_luasnip' },
 
         -- Snippets
-        -- { 'L3MON4D3/LuaSnip' },
-        -- { 'rafamadriz/friendly-snippets' },
+        { 'L3MON4D3/LuaSnip' },
+        { 'rafamadriz/friendly-snippets' },
     },
     config = function()
         ----------------
@@ -23,6 +23,13 @@ return {
         ----------------
 
         vim.opt.signcolumn = 'yes'
+
+        local lspconfig_defaults = require('lspconfig').util.default_config
+        lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+            'force',
+            lspconfig_defaults.capabilities,
+            require('cmp_nvim_lsp').default_capabilities()
+        )
 
         vim.api.nvim_create_autocmd('LspAttach', {
             desc = 'LSP actions',
@@ -49,7 +56,6 @@ return {
             'gopls',
             'rust_analyzer',
             'pylsp',
-            -- 'arduino_language_server',
         }
 
         local node_available = vim.fn.executable('node') == 1
@@ -64,7 +70,6 @@ return {
             table.insert(lng_servers, 'bashls')
             table.insert(lng_servers, 'dockerls')
             table.insert(lng_servers, 'docker_compose_language_service')
-            table.insert(lng_servers, 'vuels')
             table.insert(lng_servers, 'buf_ls')
         end
 
@@ -85,13 +90,11 @@ return {
         })
         vim.lsp.enable('lua_ls')
         vim.lsp.enable('gopls')
-        -- vim.lsp.enable('arduino_language_server')
 
         if node_available then
             vim.lsp.enable('ts_ls')
             vim.lsp.enable('eslint')
             vim.lsp.enable('tailwindcss')
-            vim.lsp.enable('vuels')
             vim.lsp.enable('buf_ls')
             vim.lsp.config('pylsp', {
                 settings = {
@@ -107,5 +110,70 @@ return {
             })
             vim.lsp.enable('pylsp')
         end
+
+        ---------
+        -- cmp --
+        ---------
+
+        local cmp = require('cmp')
+        require('luasnip.loaders.from_vscode').lazy_load()
+
+        local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
+        local kind_icons = {
+            Text = '',
+            Method = '󰆧',
+            Function = '󰊕',
+            Constructor = '',
+            Field = '󰇽',
+            Variable = '󰂡',
+            Class = '󰠱',
+            Interface = '',
+            Module = '',
+            Property = '󰜢',
+            Unit = '',
+            Value = '󰎠',
+            Enum = '',
+            Keyword = '󰌋',
+            Snippet = '',
+            Color = '󰏘',
+            File = '󰈙',
+            Reference = '',
+            Folder = '󰉋',
+            EnumMember = '',
+            Constant = '󰏿',
+            Struct = '',
+            Event = '',
+            Operator = '󰆕',
+            TypeParameter = '󰅲',
+        }
+
+        cmp.setup({
+            sources = {
+                { name = 'buffer',  keyword_length = 5 },
+                { name = 'path' },
+                { name = 'nvim_lsp' },
+                { name = 'luasnip' },
+            },
+            mapping = cmp.mapping.preset.insert({
+                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<Tab>'] = nil,
+                ['<S-Tab>'] = nil,
+            }),
+            snippet = {
+                expand = function(args)
+                    require('luasnip').lsp_expand(args.body)
+                end
+            },
+            preselect = '',
+            formatting = {
+                fields = { 'abbr', 'kind' },
+                format = function(_, item)
+                    item.kind = string.format('%s %s', kind_icons[item.kind], item.kind)
+                    return item
+                end,
+            },
+        })
     end
 }
