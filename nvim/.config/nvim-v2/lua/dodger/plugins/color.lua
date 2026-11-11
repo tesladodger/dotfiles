@@ -32,17 +32,11 @@ return {
         lazy = false,
         priority = 1001,
         config = function()
-            -- Default options:
             require('kanagawa').setup({
                 commentStyle = { italic = false },
                 functionStyle = { italic = false },
                 keywordStyle = { italic = false },
                 statementStyle = { bold = false },
-                theme = "wave",
-                background = {
-                    dark = "wave",
-                    light = "lotus"
-                },
             })
 
             SetColorscheme()
