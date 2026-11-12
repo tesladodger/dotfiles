@@ -7,15 +7,22 @@ return {
     },
     config = function()
         require('nvim-treesitter').install({
-            'vimdoc',
-            'javascript',
-            'typescript',
-            'go',
+            'bash',
             'c',
-            'lua',
-            'vim',
-            'query',
             'comment',
+            'go',
+            'html',
+            'javascript',
+            'lua',
+            'markdown',
+            'markdown_inline',
+            'query',
+            'regex',
+            'tsx',
+            'typescript',
+            'vim',
+            'vimdoc',
+            'yaml',
         })
     end
 }
