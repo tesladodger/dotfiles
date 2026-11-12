@@ -9,7 +9,6 @@ declare -a packages=( \
     "git" \
     "i3" \
     "nvim" \
-    "qpdfview" \
     "tmux" \
     # "vim" \
     # "private" \
