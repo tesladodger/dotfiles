@@ -81,6 +81,7 @@ shopt -s expand_aliases
 shopt -s histappend
 
 export EDITOR=nvim
+export NVIM_APPNAME=nvim-v2
 
 export GREP_OPTIONS='--color=auto'
 export RESTIC_REPO="sftp:amartins@192.168.50.20:/mnt/Skynet/amartins/restic-repo-tesla-manjaro"
