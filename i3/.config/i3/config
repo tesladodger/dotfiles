@@ -178,4 +178,5 @@ client.urgent            $bg      $bg      $fg_urg  $bg      $bg
 
 exec_always --no-startup-id i3-msg 'workspace 1; exec alacritty'
 exec_always --no-startup-id i3-msg 'workspace 2; exec firefox'
+exec_always --no-startup-id i3-msg 'workspace 3; exec flatpak run io.dbeaver.DBeaverCommunity'
 exec --no-startup-id ~/.config/i3/tmux_startup.sh
